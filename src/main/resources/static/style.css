@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.title {
+    font-size: 25px;
+    font-weight: bold;
+}
+.width-s {
+    width: 40px
+}
+.width-m {
+    width: 160px
+}
+.width-l {
+    width: 400px
+}

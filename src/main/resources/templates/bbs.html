@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	<title>掲示板</title>
+</head>
+<body>
+	<h1>一言掲示板</h1>
+	<form th:action="@{/post}" th:object="${form}" method="post">
+		名　　　前：<input type="text" th:field="*{name}" class="width-l" maxlength="10"><br>
+		メッセージ：<input type="text" th:field="*{message}" class="width-l" maxlength="30"><br>
+		work　　　：
+		<input type="checkbox" th:field="*{work}" th:value="a" />a
+		<input type="checkbox" th:field="*{work}" th:value="b" />b
+		<input type="checkbox" th:field="*{work}" th:value="c" />c
+		<input type="checkbox" th:field="*{work}" th:value="d" />d>
+		<br>
+		work2　　　：
+		<input type="checkbox" th:field="*{work2}" th:value="a" />a
+		<input type="checkbox" th:field="*{work2}" th:value="b" />b
+		<input type="checkbox" th:field="*{work2}" th:value="c" />c
+		<input type="checkbox" th:field="*{work2}" th:value="d" />d
+		<br>
+		<input type="submit" value="送信">
+	</form>
+	<hr>
+	<table th:if="${list.size() > 0}">
+		<tr>
+			<th class="width-s">ID</th>
+			<th class="width-m">投稿日</th>
+			<th class="width-m">名前</th>
+			<th class="width-l">メッセージ</th>
+<!--			<th class="width-m">work</th>-->
+			<th class="width-m">workString</th>
+		<th class="width-m">work2</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.bbsId}"></td>
+			<td th:text="${#temporals.format(e.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+			<td th:text="${e.name}"></td>
+			<td th:text="${e.message}"></td>
+<!--			<td th:text="${e.work}"></td>-->
+			<td th:text="${e.workString}"></td>
+			<td th:text="${e.work2}"></td>
+			<td>
+				<input type="checkbox" th:name="${e.work2}" th:value="a" />a
+				<input type="checkbox" th:name="${e.work2}" th:value="b" />b
+				<input type="checkbox" th:name="${e.work2}" th:value="c" />c
+				<input type="checkbox" th:name="${e.work2}" th:value="d" />d
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
